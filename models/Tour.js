@@ -29,6 +29,10 @@ const tourSchema = mongoose.Schema(
     },
 );
 
+tourSchema.methods.logger = () => {
+    console.log(`Data saved for ${this.name}`);
+};
+
 const Tour = mongoose.model('Tour', tourSchema);
 
 module.exports = Tour;
