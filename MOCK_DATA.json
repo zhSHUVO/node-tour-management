@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Cox's Bazar",
+        "location": "cox's bazar",
+        "image": "https://placeimg.com/260/400/arch",
+        "price": 88
+    },
+    {
+        "name": "Saint Martin's Island",
+        "location": "Saint Martin's",
+        "image": "https://placeimg.com/260/400/arch",
+        "price": 12
+    },
+    {
+        "name": "Sajek",
+        "location": "Banderban",
+        "image": "https://placeimg.com/260/400/arch",
+        "price": 34
+    },
+    {
+        "name": "Tanguar Haor",
+        "location": "Shylhet",
+        "image": "https://placeimg.com/260/400/arch",
+        "price": 23
+    },
+    {
+        "name": "Maldives",
+        "location": "Maldives",
+        "image": "https://placeimg.com/260/400/arch",
+        "price": 123
+    },
+    {
+        "name": "Rangamati",
+        "location": "Rangamati",
+        "image": "https://placeimg.com/260/400/arch",
+        "price": 65
+    },
+    {
+        "name": "Kathmandu",
+        "location": "Nepal",
+        "image": "https://placeimg.com/260/400/arch",
+        "price": 112
+    }
+]
