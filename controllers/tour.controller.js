@@ -1,4 +1,8 @@
-const { createTourServices, getTourServices } = require('../services/tour.services');
+const {
+    createTourServices,
+    getTourServices,
+    getTourDetailsServices,
+} = require('../services/tour.services');
 
 exports.createTour = async (req, res) => {
     try {
@@ -15,6 +19,16 @@ exports.getTours = async (req, res) => {
     try {
         const tours = await getTourServices();
         res.send(tours);
+    } catch (error) {
+        res.send('Failed to fetch the data.');
+    }
+};
+
+exports.getTourDetails = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const singleTour = await getTourDetailsServices(id);
+        res.send(singleTour);
     } catch (error) {
         res.send('Failed to fetch the data.');
     }
