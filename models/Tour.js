@@ -22,6 +22,10 @@ const tourSchema = mongoose.Schema(
             rquired: true,
             min: [0, 'Price is needed.'],
         },
+        viewCount: {
+            type: Number,
+            default: 0,
+        },
     },
     {
         timestamps: true,
