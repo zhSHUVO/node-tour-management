@@ -5,7 +5,7 @@ const app = require('./app');
 dotenv.config();
 
 mongoose
-    .connect(process.env.DATABASE_LOCAL, {
+    .connect(process.env.DATABASE, {
         dbName: 'tour-management',
         useUnifiedTopology: true,
         useNewUrlParser: true,
