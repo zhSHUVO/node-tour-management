@@ -2,6 +2,7 @@ const {
     createTourServices,
     getTourServices,
     getTourDetailsServices,
+    updateTourServices,
 } = require('../services/tour.services');
 
 exports.createTour = async (req, res) => {
@@ -31,5 +32,16 @@ exports.getTourDetails = async (req, res) => {
         res.send(singleTour);
     } catch (error) {
         res.send('Failed to fetch the data.');
+    }
+};
+
+exports.updateTour = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await updateTourServices(id, req.body);
+        res.send('update done');
+    } catch (error) {
+        res.send("couldn't update");
+        console.log(error);
     }
 };
