@@ -36,6 +36,11 @@ exports.updateTourServices = async (tourID, updateData) => {
 };
 
 exports.trendingTourServices = async () => {
-    const result = await Tour.find().sort({ viewCount: -1 }).limit(3);
-    return result;
+    const trendingTours = await Tour.find().sort({ viewCount: -1 }).limit(3);
+    return trendingTours;
+};
+
+exports.cheapestTourServices = async () => {
+    const cheapestTours = await Tour.find().sort({ price: 1 }).limit(3);
+    return cheapestTours;
 };

@@ -11,4 +11,6 @@ router.route('/tour/:id').patch(tourController.updateTour);
 
 router.route('/tour/trending').get(tourController.trendingTours);
 
+router.route('/tour/cheapest').get(tourController.cheapestTours);
+
 module.exports = router;

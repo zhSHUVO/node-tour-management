@@ -4,6 +4,7 @@ const {
     getTourDetailsServices,
     updateTourServices,
     trendingTourServices,
+    cheapestTourServices,
 } = require('../services/tour.services');
 
 exports.createTour = async (req, res) => {
@@ -53,5 +54,14 @@ exports.trendingTours = async (req, res) => {
         res.send(trendingTours);
     } catch (error) {
         res.send('failed to get trending tour list');
+    }
+};
+
+exports.cheapestTours = async (req, res) => {
+    try {
+        const cheapestTour = await cheapestTourServices();
+        res.send(cheapestTour);
+    } catch (error) {
+        res.send(error);
     }
 };
