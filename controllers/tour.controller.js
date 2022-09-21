@@ -11,19 +11,30 @@ exports.createTour = async (req, res) => {
     try {
         const newTour = await createTourServices(req.body);
         newTour.logger();
-        res.send('success');
+        res.status(200).json({
+            status: 'Succeed',
+            message: 'Tour info added to the database.',
+            data: newTour,
+        });
     } catch (error) {
-        console.log(error);
-        res.send('not successfull');
+        res.status(400).json({
+            status: 'Failed',
+            message: " Tour info didn't added to the database.",
+            error: error.message,
+        });
     }
 };
 
 exports.getTours = async (req, res) => {
     try {
-        const tours = await getTourServices();
+        const tours = await getTourServices(req.query);
         res.send(tours);
     } catch (error) {
-        res.send('Failed to fetch tour list.');
+        res.status(400).json({
+            status: 'Failed',
+            message: " Couldn't get all the tours data.",
+            error: error.message,
+        });
     }
 };
 
@@ -33,35 +44,62 @@ exports.getTourDetails = async (req, res) => {
         const singleTour = await getTourDetailsServices(id);
         res.send(singleTour);
     } catch (error) {
-        res.send(error);
+        res.status(400).json({
+            status: 'Failed',
+            message: " Couldn't get the tour info.",
+            error: error.message,
+        });
     }
 };
 
 exports.updateTour = async (req, res) => {
     try {
         const { id } = req.params;
-        await updateTourServices(id, req.body);
-        res.send('update done');
+        const updatedTour = await updateTourServices(id, req.body);
+        res.status(200).json({
+            status: 'Succeed',
+            message: 'Tour info updated successfully!',
+            data: updatedTour,
+        });
     } catch (error) {
-        res.send("couldn't update");
-        console.log(error);
+        res.status(400).json({
+            status: 'Failed',
+            message: "Couldn't update the tour data.",
+            error: error.message,
+        });
     }
 };
 
 exports.trendingTours = async (req, res) => {
     try {
         const trendingTours = await trendingTourServices();
-        res.send(trendingTours);
+        res.status(200).json({
+            status: 'Succeed',
+            message: 'Here is top 3 trending tours list.',
+            data: trendingTours,
+        });
     } catch (error) {
-        res.send('failed to get trending tour list');
+        res.status(400).json({
+            status: 'Failed',
+            message: "Couldn't get the trending tour list.",
+            error: error.message,
+        });
     }
 };
 
 exports.cheapestTours = async (req, res) => {
     try {
         const cheapestTour = await cheapestTourServices();
-        res.send(cheapestTour);
+        res.status(200).json({
+            status: 'Succeed',
+            message: 'Here is the list of 3 cheapest tour list.',
+            data: cheapestTour,
+        });
     } catch (error) {
-        res.send(error);
+        res.status(400).json({
+            status: 'Failed',
+            message: "Couldn't get the cheapest tour list.",
+            error: error.message,
+        });
     }
 };

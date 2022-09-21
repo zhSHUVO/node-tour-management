@@ -5,14 +5,16 @@ exports.createTourServices = async (data) => {
     return tour;
 };
 
-exports.getTourServices = async () => {
-    const tours = await Tour.find({});
+exports.getTourServices = async (queries) => {
+    const tours = await Tour.find({})
+        .select(queries.fields?.split(',')?.join(' '))
+        .sort(queries.sort)
+        .skip(Number(queries.page) - 1)
+        .limit(Number(queries.limit));
     return tours;
 };
 
 exports.getTourDetailsServices = async (tourID) => {
-    // const singleTour = await Tour.find({ _id: tourID });
-    // return singleTour;
     const tour = await Tour.findById(tourID);
     let result = await Tour.updateOne({ _id: tourID }, { $set: { viewCount: tour.viewCount + 1 } });
 
