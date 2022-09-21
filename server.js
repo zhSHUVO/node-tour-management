@@ -4,7 +4,7 @@ const app = require('./app');
 
 dotenv.config();
 
-mongoose.connect(process.env.DATABASE).then(() => {
+mongoose.connect(process.env.DATABASE_LOCAL).then(() => {
     console.log('Database connected');
 });
 
