@@ -3,6 +3,7 @@ const {
     getTourServices,
     getTourDetailsServices,
     updateTourServices,
+    trendingTourServices,
 } = require('../services/tour.services');
 
 exports.createTour = async (req, res) => {
@@ -21,7 +22,7 @@ exports.getTours = async (req, res) => {
         const tours = await getTourServices();
         res.send(tours);
     } catch (error) {
-        res.send('Failed to fetch the data.');
+        res.send('Failed to fetch tour list.');
     }
 };
 
@@ -31,7 +32,7 @@ exports.getTourDetails = async (req, res) => {
         const singleTour = await getTourDetailsServices(id);
         res.send(singleTour);
     } catch (error) {
-        res.send('Failed to fetch the data.');
+        res.send(error);
     }
 };
 
@@ -43,5 +44,14 @@ exports.updateTour = async (req, res) => {
     } catch (error) {
         res.send("couldn't update");
         console.log(error);
+    }
+};
+
+exports.trendingTours = async (req, res) => {
+    try {
+        const trendingTours = await trendingTourServices();
+        res.send(trendingTours);
+    } catch (error) {
+        res.send('failed to get trending tour list');
     }
 };

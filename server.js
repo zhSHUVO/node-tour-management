@@ -4,9 +4,15 @@ const app = require('./app');
 
 dotenv.config();
 
-mongoose.connect(process.env.DATABASE).then(() => {
-    console.log('Database connected');
-});
+mongoose
+    .connect(process.env.DATABASE_LOCAL, {
+        dbName: 'tour-management',
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+    })
+    .then(() => {
+        console.log('Database connected');
+    });
 
 const port = process.env.PORT || 8080;
 

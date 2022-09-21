@@ -7,7 +7,7 @@ const visitCount = async (req, res, next) => {
         await Tour.findByIdAndUpdate(id, { $inc: { viewCount: 1 } }, { new: true });
         next();
     } catch (error) {
-        res.send('failed to count');
+        res.send(error);
     }
 };
 

@@ -11,8 +11,16 @@ exports.getTourServices = async () => {
 };
 
 exports.getTourDetailsServices = async (tourID) => {
-    const singleTour = await Tour.find({ _id: tourID });
-    return singleTour;
+    // const singleTour = await Tour.find({ _id: tourID });
+    // return singleTour;
+    const tour = await Tour.findById(tourID);
+    let result = await Tour.updateOne({ _id: tourID }, { $set: { viewCount: tour.viewCount + 1 } });
+
+    if (result.modifiedCount) {
+        result = await Tour.findById(tourID);
+    }
+
+    return result;
 };
 
 exports.updateTourServices = async (tourID, updateData) => {
@@ -25,4 +33,9 @@ exports.updateTourServices = async (tourID, updateData) => {
         },
     );
     return updatedTour;
+};
+
+exports.trendingTourServices = async () => {
+    const result = await Tour.find().sort({ viewCount: -1 }).limit(3);
+    return result;
 };
